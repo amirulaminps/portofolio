@@ -1,30 +1,26 @@
-// =========================================================
+// ===============================
 // NAVBAR
-// =========================================================
+// ===============================
 
 const navLinks = document.querySelectorAll('.nav-link');
-const menuToggle = document.getElementById('menuToggle');
-const navMenu = document.getElementById('navMenu');
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
 
 
-// =========================================================
+// ===============================
 // NAVBAR ACTIVE
-// =========================================================
+// ===============================
 
 function setActiveNav() {
-
     const currentHash = window.location.hash || '#home';
 
     navLinks.forEach(link => {
-
         link.classList.remove('active');
 
         if (link.getAttribute('href') === currentHash) {
             link.classList.add('active');
         }
-
     });
-
 }
 
 
@@ -32,48 +28,41 @@ function setActiveNav() {
 setActiveNav();
 
 
-// Saat hash berubah
+// Saat pindah section
 window.addEventListener('hashchange', setActiveNav);
 
 
-// =========================================================
+// ===============================
 // MOBILE MENU
-// =========================================================
+// ===============================
 
 if (menuToggle && navMenu) {
 
-    // Buka / tutup menu
-    menuToggle.addEventListener('click', function (event) {
-
-        event.stopPropagation();
-
+    // Klik tombol hamburger
+    menuToggle.addEventListener('click', function () {
         navMenu.classList.toggle('active');
-
+        menuToggle.classList.toggle('active');
     });
 
 
-    // Klik menu → tutup menu
+    // Klik menu → tutup navbar
     navLinks.forEach(link => {
-
         link.addEventListener('click', function () {
-
             navMenu.classList.remove('active');
-
+            menuToggle.classList.remove('active');
         });
-
     });
 
 
-    // Klik di luar menu → tutup menu
+    // Klik di luar menu → tutup
     document.addEventListener('click', function (event) {
 
         if (
             !navMenu.contains(event.target) &&
             !menuToggle.contains(event.target)
         ) {
-
             navMenu.classList.remove('active');
-
+            menuToggle.classList.remove('active');
         }
 
     });
