@@ -2019,7 +2019,7 @@ button {
     /* FOOTER */
 
     .footer-content {
-        flex-direction:
+        flex-direction:   
             column;
 
         gap:
@@ -2028,4 +2028,308 @@ button {
         text-align:
             center;
     }
+}
+
+/* =====================================================
+   MOBILE RESPONSIVE FIX
+   ===================================================== */
+
+@media (max-width: 850px) {
+
+    /* =========================
+       BODY
+    ========================= */
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    .navbar {
+        width: 100%;
+        height: 76px;
+    }
+
+    .nav-container {
+        width: 100%;
+        height: 76px;
+        padding: 0 20px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .menu-toggle {
+        display: block !important;
+
+        margin-left: auto;
+
+        width: 42px;
+        height: 42px;
+
+        border: none;
+        background: transparent;
+
+        color: #ffffff;
+
+        font-size: 28px;
+        line-height: 1;
+
+        cursor: pointer;
+
+        position: relative;
+        z-index: 10001;
+    }
+
+
+    /* =========================
+       MOBILE NAV MENU
+    ========================= */
+
+    .nav-menu {
+        position: absolute !important;
+
+        top: 76px !important;
+        left: 0 !important;
+        right: 0 !important;
+
+        width: 100% !important;
+
+        display: none !important;
+
+        flex-direction: column !important;
+        align-items: center !important;
+
+        gap: 18px;
+
+        padding: 25px 20px;
+
+        background: rgba(6, 11, 22, 0.98);
+
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+
+        backdrop-filter: blur(15px);
+
+        transform: none !important;
+
+        z-index: 10000;
+    }
+
+    .nav-menu.active {
+        display: flex !important;
+    }
+
+    .nav-menu .nav-link {
+        display: block !important;
+
+        width: auto !important;
+
+        padding: 6px 0;
+
+        font-size: 15px;
+
+        text-align: center;
+    }
+
+    .btn-cv {
+        display: none !important;
+    }
+
+
+    /* =================================================
+       HERO
+    ================================================= */
+
+    .hero {
+        width: 100%;
+        min-height: auto;
+
+        padding: 100px 20px 70px;
+    }
+
+    .hero-container {
+        width: 100%;
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        align-items: center !important;
+
+        gap: 45px;
+
+        text-align: center;
+    }
+
+
+    /* FOTO DI ATAS */
+
+    .hero-image {
+        width: 100% !important;
+
+        order: 1 !important;
+
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+
+        margin: 0 !important;
+    }
+
+
+    /* UKURAN FOTO */
+
+    .image-circle {
+        width: 280px !important;
+        height: 280px !important;
+
+        max-width: 80vw;
+        max-height: 80vw;
+
+        margin: 0 auto !important;
+    }
+
+
+    /* TEKS DI BAWAH FOTO */
+
+    .hero-content {
+        width: 100% !important;
+
+        order: 2 !important;
+
+        text-align: center !important;
+
+        margin: 0 auto !important;
+    }
+
+
+    /* HELLO I'M */
+
+    .hero-subtitle {
+        text-align: center;
+    }
+
+
+    /* NAMA */
+
+    .hero-title {
+        width: 100%;
+
+        text-align: center;
+
+        font-size: clamp(38px, 10vw, 58px);
+
+        line-height: 1.05;
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    /* DESKRIPSI */
+
+    .hero-description {
+        width: 100%;
+
+        max-width: 500px;
+
+        margin: 20px auto 0;
+
+        text-align: center;
+
+        font-size: 16px;
+
+        line-height: 1.7;
+    }
+
+
+    /* BUTTON */
+
+    .hero-buttons {
+        width: 100%;
+
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        align-items: center !important;
+
+        gap: 14px;
+
+        margin-top: 30px;
+    }
+
+    .hero-buttons a {
+        width: 100%;
+
+        max-width: 360px;
+
+        text-align: center;
+    }
+
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    .about-container,
+    .about-content {
+        width: 100%;
+
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+
+    /* =========================
+       SKILLS
+    ========================= */
+
+    .skills-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+
+    /* =========================
+       CERTIFICATE
+    ========================= */
+
+    .certificates-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+
+    /* =========================
+       PROJECT
+    ========================= */
+
+    .projects-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+
+    /* =========================
+       EXPERIENCE
+    ========================= */
+
+    .experience-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact-content {
+        grid-template-columns: 1fr !important;
+    }
+
 }
