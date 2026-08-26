@@ -2,171 +2,158 @@
 // NAVBAR
 // =========================================================
 
-const navLinks = document.querySelectorAll('.nav-link');
-const menuToggle = document.querySelector('.menu-toggle');
-const navMenu = document.querySelector('.nav-menu');
+document.addEventListener("DOMContentLoaded", function () {
+
+    const navLinks = document.querySelectorAll(".nav-link");
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navMenu = document.querySelector(".nav-menu");
 
 
-// =========================================================
-// NAVBAR ACTIVE
-// =========================================================
+    // =====================================================
+    // NAVBAR ACTIVE
+    // =====================================================
 
-function setActiveNav() {
+    function setActiveNav() {
 
-    const currentHash =
-        window.location.hash || '#home';
+        const currentHash = window.location.hash || "#home";
 
-    navLinks.forEach(link => {
+        navLinks.forEach(function (link) {
 
-        link.classList.remove('active');
+            link.classList.remove("active");
 
-        if (
-            link.getAttribute('href') === currentHash
-        ) {
-            link.classList.add('active');
-        }
+            if (link.getAttribute("href") === currentHash) {
+                link.classList.add("active");
+            }
 
-    });
+        });
 
-}
+    }
 
 
-// Jalankan ketika halaman pertama dibuka
-setActiveNav();
+    // Jalankan ketika pertama kali halaman dibuka
+    setActiveNav();
 
 
-// Jalankan ketika hash berubah
-window.addEventListener(
-    'hashchange',
-    setActiveNav
-);
+    // Jalankan ketika hash berubah
+    window.addEventListener("hashchange", setActiveNav);
 
 
-// =========================================================
-// MOBILE MENU
-// =========================================================
+    // =====================================================
+    // MOBILE MENU
+    // =====================================================
 
-if (menuToggle && navMenu) {
+    if (menuToggle && navMenu) {
 
+        // -----------------------------------------------
+        // Klik tombol hamburger
+        // -----------------------------------------------
 
-    // -----------------------------------------------------
-    // BUKA / TUTUP HAMBURGER
-    // -----------------------------------------------------
-
-    menuToggle.addEventListener(
-        'click',
-        function (event) {
+        menuToggle.addEventListener("click", function (event) {
 
             event.stopPropagation();
 
-            navMenu.classList.toggle('active');
+            const isOpen = navMenu.classList.toggle("active");
 
-            menuToggle.classList.toggle('active');
+            menuToggle.classList.toggle("active", isOpen);
 
-        }
-    );
+            menuToggle.setAttribute(
+                "aria-expanded",
+                isOpen ? "true" : "false"
+            );
 
-
-    // -----------------------------------------------------
-    // KLIK MENU
-    // -----------------------------------------------------
-
-    navLinks.forEach(link => {
-
-        link.addEventListener(
-            'click',
-            function () {
-
-                navMenu.classList.remove('active');
-
-                menuToggle.classList.remove('active');
-
-            }
-        );
-
-    });
+        });
 
 
-    // -----------------------------------------------------
-    // KLIK DI LUAR MENU
-    // -----------------------------------------------------
+        // -----------------------------------------------
+        // Klik menu
+        // -----------------------------------------------
 
-    document.addEventListener(
-        'click',
-        function (event) {
+        navLinks.forEach(function (link) {
 
-            if (
-                !navMenu.contains(event.target) &&
-                !menuToggle.contains(event.target)
-            ) {
+            link.addEventListener("click", function () {
 
-                navMenu.classList.remove('active');
+                navMenu.classList.remove("active");
+                menuToggle.classList.remove("active");
 
-                menuToggle.classList.remove('active');
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
 
-            }
+            });
 
-        }
-    );
-
-}
+        });
 
 
-// =========================================================
-// TUTUP MENU KETIKA RESIZE KE DESKTOP
-// =========================================================
+        // -----------------------------------------------
+        // Klik di luar menu
+        // -----------------------------------------------
 
-window.addEventListener(
-    'resize',
-    function () {
+        document.addEventListener("click", function (event) {
 
-        if (window.innerWidth > 850) {
+            const clickedInsideMenu =
+                navMenu.contains(event.target);
 
-            navMenu?.classList.remove('active');
-
-            menuToggle?.classList.remove('active');
-
-        }
-
-    }
-);
+            const clickedToggle =
+                menuToggle.contains(event.target);
 
 
-// =========================================================
-// TUTUP MENU KETIKA KLIK LINK
-// =========================================================
+            if (!clickedInsideMenu && !clickedToggle) {
 
-document.querySelectorAll(
-    'a[href^="#"]'
-).forEach(link => {
+                navMenu.classList.remove("active");
+                menuToggle.classList.remove("active");
 
-    link.addEventListener(
-        'click',
-        function () {
-
-            const target =
-                this.getAttribute('href');
-
-            if (target) {
-
-                setTimeout(
-                    function () {
-
-                        navMenu?.classList.remove(
-                            'active'
-                        );
-
-                        menuToggle?.classList.remove(
-                            'active'
-                        );
-
-                    },
-                    100
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
                 );
 
             }
 
+        });
+
+
+        // -----------------------------------------------
+        // Tekan tombol ESC
+        // -----------------------------------------------
+
+        document.addEventListener("keydown", function (event) {
+
+            if (event.key === "Escape") {
+
+                navMenu.classList.remove("active");
+                menuToggle.classList.remove("active");
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            }
+
+        });
+
+    }
+
+
+    // =====================================================
+    // TUTUP MENU KETIKA RESIZE KE DESKTOP
+    // =====================================================
+
+    window.addEventListener("resize", function () {
+
+        if (window.innerWidth > 768 && navMenu && menuToggle) {
+
+            navMenu.classList.remove("active");
+            menuToggle.classList.remove("active");
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
         }
-    );
+
+    });
 
 });
